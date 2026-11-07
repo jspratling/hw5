@@ -1,0 +1,84 @@
+{
+  "vibe_coder": "Cursor (Agent chat)",
+  "mcp_server": "campus-customs",
+  "config_files": [
+    ".cursor/mcp.json",
+    ".mcp.json"
+  ],
+  "database": "data/campus_customs_new.db",
+  "tested_on": "2026-11-05",
+  "note": "All three questions were typed in one Cursor chat ('Inventory and payment inquiries'); Cursor called each MCP tool once. Tool outputs below are the exact JSON the tools returned; every value matches data/campus_customs_new.db.",
+  "tests": [
+    {
+      "prompt": "How many Classic Bulldog Tees in size S do we have?",
+      "tool": "check_stock",
+      "arguments": {
+        "sku": "CC-TEE-WHITE",
+        "size": "S"
+      },
+      "ticket": 101,
+      "tool_output": {
+        "found": true,
+        "sku": "CC-TEE-WHITE",
+        "name": "Classic Bulldog Tee",
+        "size": "S",
+        "qty_on_hand": 0,
+        "location": "Aisle B",
+        "in_stock": false
+      },
+      "cursor_answer_summary": "0 on hand, out of stock (inventory: CC-TEE-WHITE size S qty 0, Aisle B)",
+      "matches_database": true
+    },
+    {
+      "prompt": "Has invoice 501 been paid, and is it overdue?",
+      "tool": "get_invoice_status",
+      "arguments": {
+        "invoice_id": 501
+      },
+      "ticket": 101,
+      "tool_output": {
+        "found": true,
+        "invoice_id": 501,
+        "vendor_id": 1,
+        "vendor_name": "Bulldog Print Co",
+        "vendor_lead_days": 5,
+        "amount": 840.0,
+        "due_date": "2026-08-28",
+        "status": "open",
+        "description": "Rush reprint CC-TEE-WHITE S",
+        "today": "2026-08-31",
+        "is_paid": false,
+        "is_overdue": true,
+        "days_past_due": 3,
+        "blocks_vendor_shipping": true,
+        "payments_recorded": []
+      },
+      "cursor_answer_summary": "Not paid: open $840.00 from Bulldog Print Co, due 2026-08-28, 3 days past due on 2026-08-31; blocks the vendor from shipping",
+      "matches_database": true
+    },
+    {
+      "prompt": "Is the rent on lease 1 paid or still open?",
+      "tool": "get_rent_status",
+      "arguments": {
+        "lease_id": 1
+      },
+      "ticket": 102,
+      "tool_output": {
+        "found": true,
+        "lease_id": 1,
+        "space_name": "Chapel Street shop",
+        "landlord": "Elm City Properties",
+        "monthly_rent": 2400.0,
+        "next_due": "2026-09-02",
+        "today": "2026-08-31",
+        "days_until_due": 2,
+        "is_overdue": false,
+        "status": "open",
+        "late_fee_terms": "Not stored in the database",
+        "payments_recorded": []
+      },
+      "cursor_answer_summary": "Still open: $2,400.00 for Chapel Street shop (Elm City Properties), due 2026-09-02, 2 days away; no rent payments recorded",
+      "matches_database": true
+    }
+  ]
+}

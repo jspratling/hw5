@@ -1,0 +1,109 @@
+{
+  "run_date": "2026-11-06",
+  "shop_today": "2026-08-31",
+  "model": "gpt-6-luna (via Portkey) for every agent",
+  "store_manager": "David",
+  "database": "data/campus_customs_new.db (reset from data/campus_customs.db before the run)",
+  "checking_start": 3400.0,
+  "checking_end": 2186.0,
+  "checking_end_matches_cash_accounts": true,
+  "tickets": [
+    {
+      "id": 101,
+      "requester": "Tauhid Zaman",
+      "request": "1 Classic Bulldog Tee (CC-TEE-WHITE), size S",
+      "final_status": "resolved",
+      "outcome": "Invoice 501 ($840, Bulldog Print Co, 3 days overdue) was paid with David's approval, which releases the size S tee reprint. The tee is expected about 2026-09-05 and will be set aside for Tauhid. No separate tee order.",
+      "boss_first_call": "inventory",
+      "handoffs": [
+        "boss -> inventory",
+        "inventory -> accounting",
+        "boss -> customer_service",
+        "boss -> customer_service (final check, updated note)"
+      ],
+      "agent_contributions": {
+        "boss": "Routed to Inventory first, re-checked stock, invoice and cash, verified the $840 payment, approved both drafts, set waiting_on_approval, then resolved the ticket after the payment (on the second final check).",
+        "inventory": "Found size S at 0 (Aisle B), confirmed invoice 501 blocks Bulldog Print Co and the 5-day lead time (about 2026-09-05), placed no separate order, handed the payment to Accounting.",
+        "accounting": "Checked invoice 501 and cash ($3,400, leaving $2,560) and prepared approval 1 for $840.00.",
+        "customer_service": "Drafted Tauhid's note (draft 1) and, after payment, an updated note (draft 2) saying the reprint is released and expected September 5, 2026. Nothing sent.",
+        "facilities": "Not needed."
+      },
+      "human_approvals": [
+        {
+          "approval_id": 1,
+          "payee": "Bulldog Print Co",
+          "invoice": 501,
+          "amount": 840.0,
+          "decision": "approved",
+          "approved_by": "David",
+          "checking_before": 3400.0,
+          "checking_after": 2560.0
+        }
+      ],
+      "drafts": [
+        1,
+        2
+      ],
+      "follow_up": "Size S reprint expected about 2026-09-05."
+    },
+    {
+      "id": 102,
+      "requester": "Elm City Properties",
+      "request": "Rent notice: $2,400 for the Chapel Street shop (lease 1), due 2026-09-02",
+      "final_status": "held",
+      "outcome": "Rent held per the owner's decision until the hoodie orders are in and paid for. No payment prepared. Landlord note drafted and approved (not sent): the late fee will be paid per the regular lease terms (no amount stored, none stated).",
+      "boss_first_call": "facilities",
+      "handoffs": [
+        "boss -> facilities"
+      ],
+      "agent_contributions": {
+        "boss": "Routed to Facilities, re-checked the lease, approved the landlord note, set the ticket to held.",
+        "facilities": "Confirmed $2,400 due 2026-09-02 (2 days away) and unpaid, checked approvals and cash ($2,560), drafted the landlord note (draft 3).",
+        "inventory": "Not needed.",
+        "accounting": "Not needed (Facilities checked the cash itself).",
+        "customer_service": "Not needed."
+      },
+      "human_approvals": [],
+      "drafts": [
+        3
+      ],
+      "follow_up": "Owner to authorize the rent payment later; late fee per lease terms."
+    },
+    {
+      "id": 103,
+      "requester": "Yale AI Club",
+      "request": "20 Basic Hoodies (CC-HOOD-NAVY), size M, bulk discount",
+      "final_status": "resolved",
+      "outcome": "Shipped the 8 on hand; ordered 17 from Bulldog Print Co (12 for the club + 5 for stock), arriving about 2026-09-05; restock invoice 502 ($374) paid with David's approval. Club billed for all 20: $1,160.00, or $1,136.80 if paid within 10 days (2% net 10); margin 62.1% at list, 61.3% with the discount.",
+      "boss_first_call": "inventory",
+      "handoffs": [
+        "boss -> inventory",
+        "inventory -> accounting",
+        "boss -> accounting"
+      ],
+      "agent_contributions": {
+        "boss": "Routed to Inventory first, checked stock, invoice, cash and approvals, asked Accounting to confirm the bill and margin, verified the $374 payment, approved the bill draft, then resolved the ticket after the payment.",
+        "inventory": "Found 8 size M on hand (Aisle A), shipped all 8 to the Yale AI Club (stock M now 0), ordered 17 (open invoice 502, $374, $22 each, due 2026-09-05), handed the bill to Accounting.",
+        "accounting": "Priced 20 hoodies with 2% net 10, confirmed the margin, prepared approval 2 for $374.00, drafted the club's bill (draft 4), and did not duplicate work when asked again.",
+        "customer_service": "Not used (no message to the club about 8 now / 12 later; the bill was the only draft).",
+        "facilities": "Not needed."
+      },
+      "human_approvals": [
+        {
+          "approval_id": 2,
+          "payee": "Bulldog Print Co",
+          "invoice": 502,
+          "amount": 374.0,
+          "decision": "approved",
+          "approved_by": "David",
+          "checking_before": 2560.0,
+          "checking_after": 2186.0
+        }
+      ],
+      "drafts": [
+        4
+      ],
+      "follow_up": "Ship the remaining 12 hoodies when the restock arrives about 2026-09-05; 5 stay in stock."
+    }
+  ]
+}

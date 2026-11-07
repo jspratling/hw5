@@ -1,0 +1,19 @@
+# Secrets — never commit the real .env
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node / Vite
+node_modules/
+frontend/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Note: data/*.db files ARE committed on purpose (graders need them).
